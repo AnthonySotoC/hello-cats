@@ -51,7 +51,3 @@ export class CatsResolver {
     return  this.humansService.findOneById(cat.id);
   }
 }
-
-/*return this.context.dataloader
-  .bind(this.batchOwners.getAll, args)
-  .load(parent.id);*/
