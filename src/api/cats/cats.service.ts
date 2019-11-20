@@ -5,7 +5,7 @@ import { CatArgs } from './dto/cat.args';
 
 @Injectable()
 export class CatsService {
-  private cats: Cat[];
+  private readonly cats: Cat[];
 
   constructor() {
     this.cats = [
@@ -14,26 +14,27 @@ export class CatsService {
     ];
   }
 
-  create(data: CreateCatInput): Cat {
+  async findAll(catArgs: CatArgs): Promise<Cat[]> {
+    return await this.cats;
+  }
+
+  async create(data: CreateCatInput): Promise<Cat> {
     const newCat: Cat = { id: (this.cats.length + 1).toString(), ...data };
     this.cats.push(newCat);
-    return newCat;
+    return await newCat;
   }
 
-  findOneById(id: string): Cat {
-    return this.cats.find(cat => cat.id === id);
+  async findOneById(id: string): Promise<Cat> {
+    return await this.cats.find(cat => cat.id === id);
   }
 
-  findAll(catArgs: CatArgs): Cat[] {
-    return this.cats;
-  }
-
-  remove(id: string): boolean {
+  async remove(id: string): Promise<boolean> {
     const position = this.cats.findIndex(cat => cat.id === id);
     if (position) {
       this.cats.splice(position, 1);
-      return true;
+      return await true;
     }
-    return false;
+    return await false;
   }
+
 }

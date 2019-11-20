@@ -3,20 +3,28 @@ import { Human } from './model/human';
 
 @Injectable()
 export class HumansService {
-  private humans: Human[];
+  private readonly humans: Human[];
 
   constructor() {
     this.humans = [
-      { id: '1', firstName: 'Anthony', lastName: 'Soto' },
-      { id: '2', firstName: 'Charlie', lastName: 'Sanchez' },
+      { 
+        id: '1', 
+        firstName: 'Joel', 
+        lastName: 'Alvarez' 
+      },
+      { 
+        id: '2', 
+        firstName: 'Jeffry', 
+        lastName: 'Venegas' 
+      },
     ];
   }
 
-  findOneById(id: string): Human {
-    return this.humans.find(human => human.id === id);
+  async findOneById(id: string): Promise<Human> {
+    return await this.humans.find(human => human.id === id);
   }
 
-  findAll(humanArgs: any): Human[] {
-    return this.humans;
+  async findAll(humanArgs: any): Promise<Human[]> {
+    return await this.humans;
   }
 }

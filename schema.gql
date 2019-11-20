@@ -6,7 +6,7 @@
 type Cat {
   id: ID!
   name: String!
-  owner: Human
+  owner: Human!
 }
 
 input CreateCatInput {
@@ -17,6 +17,7 @@ type Human {
   id: ID!
   firstName: String!
   lastName: String!
+  cats: [Cat!]
 }
 
 type Mutation {
@@ -25,6 +26,6 @@ type Mutation {
 }
 
 type Query {
-  cat(id: String!): Cat!
   cats(skip: Int = 0, take: Int = 25): [Cat!]!
+  cat(id: String!): Cat!
 }

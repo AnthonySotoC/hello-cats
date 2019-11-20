@@ -5,11 +5,12 @@ import { HumansModule } from './humans/humans.module';
 
 @Module({
   imports: [
+    CatsModule,
+    HumansModule,
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
     }),
-    CatsModule,
-    HumansModule,
+   
   ],
 })
 export class AppModule {}
