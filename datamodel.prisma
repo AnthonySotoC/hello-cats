@@ -1,0 +1,16 @@
+type Cat {
+  id: ID! @id @unique
+  name: String!
+  owner: Human! @relation(link: INLINE)
+}
+
+input CreateCatInput {
+  name: String!
+}
+
+type Human {
+  id: ID! @id @unique
+  firstName: String!
+  lastName: String!
+  cats: [Cat!]
+}
