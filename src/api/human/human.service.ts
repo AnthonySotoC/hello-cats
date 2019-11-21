@@ -2,20 +2,20 @@ import { Injectable } from '@nestjs/common';
 import { Human } from './model/human';
 
 @Injectable()
-export class HumansService {
+export class HumanService {
   private readonly humans: Human[];
 
   constructor() {
     this.humans = [
-      { 
-        id: '1', 
-        firstName: 'Joel', 
-        lastName: 'Alvarez' 
+      {
+        id: '1',
+        firstName: 'Kamil',
+        lastName: 'Mysliwiec',
       },
-      { 
-        id: '2', 
-        firstName: 'Jeffry', 
-        lastName: 'Venegas' 
+      {
+        id: '2',
+        firstName: 'Anthony',
+        lastName: 'Soto',
       },
     ];
   }

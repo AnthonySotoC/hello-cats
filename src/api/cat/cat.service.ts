@@ -4,7 +4,7 @@ import { Cat } from './model/cat';
 import { CatArgs } from './dto/cat.args';
 
 @Injectable()
-export class CatsService {
+export class CatService {
   private readonly cats: Cat[];
 
   constructor() {
@@ -36,5 +36,4 @@ export class CatsService {
     }
     return await false;
   }
-
 }
