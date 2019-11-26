@@ -22,12 +22,12 @@ export class CatResolver {
     private readonly humanService: HumanService,
   ) {}
 
-  @Query(returns => [Cat])
+  @Query(of => [Cat])
   public cats(@Args() catArgs: CatArgs): Promise<Cat[]> {
     return this.catService.findAll(catArgs);
   }
 
-  @Query(returns => Cat)
+  @Query(of => Cat)
   public cat(@Args('id') id: string): Promise<Cat> {
     const cat = this.catService.findOneById(id);
     if (!cat) {
@@ -36,18 +36,18 @@ export class CatResolver {
     return cat;
   }
 
-  @Mutation(returns => Cat)
+  @Mutation(of => Cat)
   public createCat(@Args('data') data: CreateCatInput): Promise<Cat> {
     return this.catService.create(data);
   }
 
-  @Mutation(returns => Boolean)
+  @Mutation(of => Boolean)
   public deleteCat(@Args('id') id: string) {
     return this.catService.remove(id);
   }
 
   @ResolveProperty('owner', () => Human)
-  async getOwner(@Parent() cat): Promise<Human> {
+  async getOwner(@Parent() cat: Cat): Promise<Human> {
     return this.humanService.findOneById(cat.id);
   }
 }
