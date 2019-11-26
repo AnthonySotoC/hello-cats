@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from 'type-graphql';
-import { Cat } from 'src/api/cat/model/cat';
+import { Cat } from '../../cat/model/cat';
 
 @ObjectType()
 export class Human {

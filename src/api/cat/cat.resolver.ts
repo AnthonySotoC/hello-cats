@@ -13,7 +13,7 @@ import { CatArgs } from './dto/cat.args';
 import { HumanService } from '../human/human.service';
 
 import { CreateCatInput } from './dto/create-cat.input';
-import { Human } from 'src/api/human/model/human';
+import { Human } from '../../api/human/model/human';
 
 @Resolver(of => Cat)
 export class CatResolver {
