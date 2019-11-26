@@ -16,6 +16,6 @@ import { ConfigModule } from 'src/shared/config/config.module';
 })
 export class AppModule {
   constructor(config: ConfigService) {
-    console.log(config.get('PORT'));
+    console.log(config.isApiAuthEnabled);
   }
 }
