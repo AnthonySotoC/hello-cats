@@ -22,6 +22,8 @@ export class ConfigService {
   constructor(filePath: string) {
     const config: EnvConfig = dotenv.parse(fs.readFileSync(filePath)) as any;
     this.envConfig = this.validateInput(config);
+
+    this.get = this.get.bind(this);
   }
 
   public get(key: keyof EnvConfig): string {
@@ -33,7 +35,7 @@ export class ConfigService {
   }
 
   public get graphql(): GqlModuleOptions {
-    const get = this.get.bind(this);
+    const { get } = this;
 
     return {
       autoSchemaFile: 'schema.gql',
@@ -42,7 +44,7 @@ export class ConfigService {
   }
 
   public get typeORM(): MysqlConnectionOptions {
-    const get = this.get.bind(this);
+    const { get } = this;
 
     return {
       type: 'mysql',
