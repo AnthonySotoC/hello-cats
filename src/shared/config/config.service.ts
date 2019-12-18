@@ -7,10 +7,10 @@ import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOpti
 
 interface EnvConfig {
   NODE_ENV: string;
-  PORT: number;
-  API_AUTH_ENABLED: boolean;
+  PORT: string;
+  API_AUTH_ENABLED: string;
   DB_HOST: string;
-  DB_PORT: number;
+  DB_PORT: string;
   DB_USER: string;
   DB_PASSWORD: string;
   DB_NAME: string;
@@ -46,12 +46,13 @@ export class ConfigService {
 
     return {
       type: 'mysql',
-      port: 3306,
+      port: parseInt(get('DB_PORT'), 10),
       host: get('DB_HOST'),
       username: get('DB_USER'),
       password: get('DB_PASSWORD'),
       database: get('DB_NAME'),
-      synchronize: true,
+      entities: [],
+      synchronize: false,
     };
   }
 
