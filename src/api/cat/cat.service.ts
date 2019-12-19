@@ -1,39 +1,51 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+
 import { CreateCatInput } from './dto/create-cat.input';
 import { Cat } from './model/cat';
+import { Cat as CatEntity } from '../../shared/datasource/cat.entity';
 import { CatArgs } from './dto/cat.args';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class CatService {
   private readonly cats: Cat[];
 
-  constructor() {
+  constructor(
+    @InjectRepository(CatEntity)
+    private readonly catRepository: Repository<CatEntity>,
+  ) {
     this.cats = [
-      { id: '1', name: 'Mike' },
-      { id: '2', name: 'Charlie' },
+      { id: 1, name: 'Mike', humanId: null },
+      { id: 2, name: 'Charlie', humanId: null },
     ];
   }
 
-  async findAll(catArgs: CatArgs): Promise<Cat[]> {
-    return await this.cats;
-  }
+  public batch = async (keys: number[]) => {
+    return this.catRepository.findByIds(keys);
+  };
 
-  async create(data: CreateCatInput): Promise<Cat> {
-    const newCat: Cat = { id: (this.cats.length + 1).toString(), ...data };
+  public findAll = async (catArgs: CatArgs): Promise<Cat[]> => {
+    // TODO Change the any type
+    return (await this.catRepository.find()) as any;
+  };
+
+  public create = async (data: CreateCatInput): Promise<Cat> => {
+    const newCat: Cat = { id: this.cats.length + 1, ...data, humanId: null };
     this.cats.push(newCat);
     return await newCat;
-  }
+  };
 
-  async findOneById(id: string): Promise<Cat> {
+  public findOneById = async (id: number): Promise<Cat> => {
     return await this.cats.find(cat => cat.id === id);
-  }
+  };
 
-  async remove(id: string): Promise<boolean> {
+  public remove = async (id: number): Promise<boolean> => {
     const position = this.cats.findIndex(cat => cat.id === id);
     if (position) {
       this.cats.splice(position, 1);
       return await true;
     }
     return await false;
-  }
+  };
 }

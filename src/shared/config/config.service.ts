@@ -5,6 +5,8 @@ import * as fs from 'fs';
 import { GqlModuleOptions } from '@nestjs/graphql';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 
+import entities from '../datasource/entities';
+
 interface EnvConfig {
   NODE_ENV: string;
   PORT: string;
@@ -53,8 +55,8 @@ export class ConfigService {
       username: get('DB_USER'),
       password: get('DB_PASSWORD'),
       database: get('DB_NAME'),
-      entities: [],
-      synchronize: false,
+      synchronize: true,
+      entities,
     };
   }
 

@@ -4,11 +4,14 @@ import { Human } from '../../human/model/human';
 @ObjectType()
 export class Cat {
   @Field(type => ID)
-  id: string;
+  id: number;
+
+  @Field(type => Number)
+  humanId: number;
 
   @Field(type => String)
   name: string;
 
   @Field(type => Human, { nullable: true })
-  owner?: Human;
+  human?: Human;
 }

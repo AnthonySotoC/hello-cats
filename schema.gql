@@ -5,12 +5,18 @@
 
 type Cat {
   id: ID!
+  humanId: Float!
   name: String!
-  owner: Human!
+  human: Human
 }
 
 input CreateCatInput {
   name: String!
+}
+
+input CreateHumanInput {
+  firstName: String!
+  lastName: String!
 }
 
 type Human {
@@ -22,10 +28,13 @@ type Human {
 
 type Mutation {
   createCat(data: CreateCatInput!): Cat!
-  deleteCat(id: String!): Boolean!
+  deleteCat(id: Float!): Boolean!
+  createHuman(data: CreateHumanInput!): Human!
 }
 
 type Query {
   cats(skip: Int = 0, take: Int = 25): [Cat!]!
-  cat(id: String!): Cat!
+  cat(id: Float!): Cat!
+  humans(skip: Int = 0, take: Int = 25): [Human!]!
+  human(id: String!): Human!
 }
