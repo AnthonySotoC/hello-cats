@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { CreateCatInput } from './dto/create-cat.input';
 import { Cat } from './model/cat';
-import { Cat as CatEntity } from '../../shared/datasource/cat.entity';
+import { Cat as CatEntity } from '../../shared/datasource/models/cat.entity';
 import { CatArgs } from './dto/cat.args';
 import { Repository } from 'typeorm';
 

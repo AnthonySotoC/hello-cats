@@ -4,10 +4,10 @@ import { Injectable } from '@nestjs/common';
 import { IDataloaderArgs } from './models/dataloader-args.interface';
 import { IDataloader } from './models/dataloader.interface';
 
-import { Cat } from './../../datasource/cat.entity';
+import { Cat } from './../../datasource/models/cat.entity';
 import { CatService } from './../../../api/cat/cat.service';
 
-import { Human } from './../../datasource/human.entity';
+import { Human } from '../../datasource/models/human.entity';
 import { HumanService } from './../../../api/human/human.service';
 
 @Injectable()

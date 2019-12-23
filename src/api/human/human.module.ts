@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { Human } from '../../shared/datasource/human.entity';
+import { Human } from '../../shared/datasource/models/human.entity';
 import { HumanResolver } from './human.resolver';
 import { HumanService } from './human.service';
 
