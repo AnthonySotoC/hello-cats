@@ -7,7 +7,6 @@ import {
   Parent,
 } from '@nestjs/graphql';
 import { NotFoundException } from '@nestjs/common';
-import * as Dataloader from 'dataloader';
 
 import { Cat } from './model/cat';
 import { CatArgs } from './dto/cat.args';
@@ -16,23 +15,16 @@ import { CreateCatInput } from './dto/create-cat.input';
 
 import { Human } from '../../api/human/model/human';
 import { HumanService } from '../human/human.service';
+import { Dataloader } from '../../shared/modules/dataloader/dataloader.decorator';
 
-import { DataloaderService } from '../../shared/modules/dataloader/dataloader.service';
+import { IDataloader } from '../../shared/modules/dataloader/models/dataloader.interface';
 
 @Resolver(of => Cat)
 export class CatResolver {
-  private readonly humanDataloader: Dataloader<number, Human[]>;
-
   constructor(
     private readonly catService: CatService,
     private readonly humanService: HumanService,
-    private readonly dataloaderService: DataloaderService,
-  ) {
-    this.humanDataloader = this.dataloaderService.createDataloader({
-      findAll: this.humanService.batch,
-      filterBy: 'id',
-    });
-  }
+  ) {}
 
   @Query(of => [Cat])
   public cats(@Args() catArgs: CatArgs): Promise<Cat[]> {
@@ -59,8 +51,12 @@ export class CatResolver {
   }
 
   @ResolveProperty(() => Human)
-  async human(@Parent() cat: Cat): Promise<Human> {
-    const owners = await this.humanDataloader.load(cat.humanId || -1);
-    return owners.shift();
+  async human(
+    @Parent() cat: Cat,
+    @Dataloader() { humanDataloader }: IDataloader,
+  ): Promise<Human> {
+    const owners = await humanDataloader.load(cat.humanId || -1);
+    // TODO Remove any type
+    return owners.shift() as any;
   }
 }

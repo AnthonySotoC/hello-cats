@@ -56,6 +56,7 @@ export class ConfigService {
       password: get('DB_PASSWORD'),
       database: get('DB_NAME'),
       synchronize: true,
+      logging: true,
       entities,
     };
   }

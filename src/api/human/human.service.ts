@@ -22,8 +22,9 @@ export class HumanService {
     ];
   }
 
-  public batch = async (keys: number[]) => {
-    return this.humanRepository.findByIds(keys);
+  public batch = async (keys: number[]): Promise<Human[]> => {
+    // TODO Change the any type
+    return (await this.humanRepository.findByIds(keys)) as any;
   };
 
   public findOneById = async (id: string): Promise<Human> => {

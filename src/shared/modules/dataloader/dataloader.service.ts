@@ -2,13 +2,33 @@ import { Injectable } from '@nestjs/common';
 import * as Dataloader from 'dataloader';
 
 import { IDataloaderArgs } from './models/dataloader-args.interface';
+import { HumanService } from './../../../api/human/human.service';
 
 @Injectable()
 export class DataloaderService {
-  public createDataloader({ findAll, filterBy }: IDataloaderArgs): Dataloader<number, any[]> {
+  constructor(private readonly humanService: HumanService) {}
+
+  public createDataloader({
+    findAll,
+    filterBy,
+  }: IDataloaderArgs): Dataloader<number, any[]> {
+    console.log('llegue');
     return new Dataloader(async (keys: number[]) => {
       const response = await findAll(keys);
-      return keys.map((value: number) => response.filter((row: any) => row[filterBy] === value));
+
+      return keys.map((value: number) =>
+        response.filter((row: any) => row[filterBy] === value),
+      );
     });
   }
+
+  public getDataloader = () => {
+    console.log('HEY');
+    return {
+      humanDataloader: this.createDataloader({
+        findAll: this.humanService.batch,
+        filterBy: 'id',
+      }),
+    };
+  };
 }
