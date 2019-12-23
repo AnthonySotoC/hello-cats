@@ -12,7 +12,6 @@ export class DataloaderService {
     findAll,
     filterBy,
   }: IDataloaderArgs): Dataloader<number, any[]> {
-    console.log('llegue');
     return new Dataloader(async (keys: number[]) => {
       const response = await findAll(keys);
 
@@ -23,7 +22,6 @@ export class DataloaderService {
   }
 
   public getDataloader = () => {
-    console.log('HEY');
     return {
       humanDataloader: this.createDataloader({
         findAll: this.humanService.batch,

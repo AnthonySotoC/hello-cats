@@ -56,7 +56,6 @@ export class CatResolver {
     @Dataloader() { humanDataloader }: IDataloader,
   ): Promise<Human> {
     const owners = await humanDataloader.load(cat.humanId || -1);
-    // TODO Remove any type
-    return owners.shift() as any;
+    return owners.shift();
   }
 }

@@ -18,7 +18,7 @@ export class HumanResolver {
   }
 
   @Query(of => Human)
-  public human(@Args('id') id: string): Promise<Human> {
+  public human(@Args('id') id: number): Promise<Human> {
     const cat = this.humanService.findOneById(id);
     if (!cat) {
       throw new NotFoundException(id);
@@ -28,6 +28,6 @@ export class HumanResolver {
 
   @Mutation(of => Human)
   public createHuman(@Args('data') data: CreateHumanInput): Promise<Human> {
-    return this.humanService.findOneById('1');
+    return this.humanService.findOneById(1);
   }
 }

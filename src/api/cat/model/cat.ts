@@ -7,7 +7,7 @@ export class Cat {
   id: number;
 
   @Field(type => Number)
-  humanId: number;
+  humanId?: number;
 
   @Field(type => String)
   name: string;

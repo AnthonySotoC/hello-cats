@@ -15,7 +15,7 @@ export class HumanService {
   ) {
     this.humans = [
       {
-        id: '1',
+        id: 1,
         firstName: 'Kamil',
         lastName: 'Mysliwiec',
       },
@@ -23,11 +23,10 @@ export class HumanService {
   }
 
   public batch = async (keys: number[]): Promise<Human[]> => {
-    // TODO Change the any type
-    return (await this.humanRepository.findByIds(keys)) as any;
+    return await this.humanRepository.findByIds(keys);
   };
 
-  public findOneById = async (id: string): Promise<Human> => {
+  public findOneById = async (id: number): Promise<Human> => {
     return await this.humans.find(human => human.id === id);
   };
 

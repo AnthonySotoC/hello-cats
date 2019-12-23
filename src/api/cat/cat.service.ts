@@ -26,8 +26,7 @@ export class CatService {
   };
 
   public findAll = async (catArgs: CatArgs): Promise<Cat[]> => {
-    // TODO Change the any type
-    return (await this.catRepository.find()) as any;
+    return await this.catRepository.find();
   };
 
   public create = async (data: CreateCatInput): Promise<Cat> => {

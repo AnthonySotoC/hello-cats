@@ -4,7 +4,7 @@ import { Cat } from '../../cat/model/cat';
 @ObjectType()
 export class Human {
   @Field(type => ID)
-  id: string;
+  id: number;
 
   @Field(type => String)
   firstName: string;

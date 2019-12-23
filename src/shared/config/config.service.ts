@@ -3,6 +3,7 @@ import * as Joi from '@hapi/joi';
 import * as fs from 'fs';
 
 import { GqlModuleOptions } from '@nestjs/graphql';
+import { InternalServerErrorException } from '@nestjs/common';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 
 import entities from '../datasource/entities';
@@ -56,7 +57,7 @@ export class ConfigService {
       password: get('DB_PASSWORD'),
       database: get('DB_NAME'),
       synchronize: true,
-      logging: true,
+      logging: false,
       entities,
     };
   }
@@ -80,8 +81,9 @@ export class ConfigService {
     );
 
     if (error) {
-      // TODO Create a error folder
-      throw new Error(`Config validation error: ${error.message}`);
+      throw new InternalServerErrorException(
+        `Config validation error: ${error.message}`,
+      );
     }
 
     return validatedEnvConfig;

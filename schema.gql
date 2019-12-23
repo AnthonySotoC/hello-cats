@@ -36,5 +36,5 @@ type Query {
   cats(skip: Int = 0, take: Int = 25): [Cat!]!
   cat(id: Float!): Cat!
   humans(skip: Int = 0, take: Int = 25): [Human!]!
-  human(id: String!): Human!
+  human(id: Float!): Human!
 }
