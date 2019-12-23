@@ -1,11 +1,4 @@
-import {
-  Resolver,
-  Query,
-  Args,
-  Mutation,
-  ResolveProperty,
-  Parent,
-} from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation, ResolveProperty, Parent } from '@nestjs/graphql';
 import { NotFoundException } from '@nestjs/common';
 
 import { Cat } from './model/cat';
@@ -47,10 +40,7 @@ export class CatResolver {
   }
 
   @ResolveProperty(() => Human)
-  async human(
-    @Parent() cat: Cat,
-    @Dataloader() { humanDataloader }: IDataloader,
-  ): Promise<Human> {
+  async human(@Parent() cat: Cat, @Dataloader() { humanDataloader }: IDataloader): Promise<Human> {
     const owners = await humanDataloader.load(cat.humanId || -1);
     return owners.shift();
   }
