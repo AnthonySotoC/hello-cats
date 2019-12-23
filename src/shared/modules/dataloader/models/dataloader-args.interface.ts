@@ -1,4 +1,4 @@
-export interface IDataloaderArgs {
-  findAll: (keys: number[]) => Promise<any[]>;
-  filterBy: string;
+export interface IDataloaderArgs<T> {
+  findAll: (keys: number[]) => Promise<T[]>;
+  filterBy: keyof T;
 }

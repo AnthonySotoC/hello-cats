@@ -1,10 +1,13 @@
-import { Injectable } from '@nestjs/common';
 import * as Dataloader from 'dataloader';
+import { Injectable } from '@nestjs/common';
 
 import { IDataloaderArgs } from './models/dataloader-args.interface';
 import { IDataloader } from './models/dataloader.interface';
 
+import { Cat } from './../../datasource/cat.entity';
 import { CatService } from './../../../api/cat/cat.service';
+
+import { Human } from './../../datasource/human.entity';
 import { HumanService } from './../../../api/human/human.service';
 
 @Injectable()
@@ -14,11 +17,10 @@ export class DataloaderService {
     readonly humanService: HumanService,
   ) {}
 
-  public createDataloader({
+  public createDataloader<T>({
     findAll,
     filterBy,
-  }: // TODO TYPE THIS WITH THE ENTITY ATTRIBUTES
-  IDataloaderArgs): Dataloader<number, any[]> {
+  }: IDataloaderArgs<T>): Dataloader<number, any[]> {
     return new Dataloader(async (keys: number[]) => {
       const response = await findAll(keys);
 
@@ -30,11 +32,11 @@ export class DataloaderService {
 
   public getDataloader = (): IDataloader => {
     return {
-      catDataloader: this.createDataloader({
+      catDataloader: this.createDataloader<Cat>({
         findAll: this.catService.batch,
         filterBy: 'humanId',
       }),
-      humanDataloader: this.createDataloader({
+      humanDataloader: this.createDataloader<Human>({
         findAll: this.humanService.batch,
         filterBy: 'id',
       }),
