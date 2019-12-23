@@ -14,17 +14,13 @@ import { CatService } from './cat.service';
 import { CreateCatInput } from './dto/create-cat.input';
 
 import { Human } from '../../api/human/model/human';
-import { HumanService } from '../human/human.service';
-import { Dataloader } from '../../shared/modules/dataloader/dataloader.decorator';
 
+import { Dataloader } from '../../shared/modules/dataloader/dataloader.decorator';
 import { IDataloader } from '../../shared/modules/dataloader/models/dataloader.interface';
 
 @Resolver(of => Cat)
 export class CatResolver {
-  constructor(
-    private readonly catService: CatService,
-    private readonly humanService: HumanService,
-  ) {}
+  constructor(private readonly catService: CatService) {}
 
   @Query(of => [Cat])
   public cats(@Args() catArgs: CatArgs): Promise<Cat[]> {
