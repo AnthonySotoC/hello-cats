@@ -11,20 +11,43 @@
 
 ### Getting started
 
-- Docker is required to run this project locally
-  Download it on: https://www.docker.com/get-started
-- Create the .env file:
+- Installation
+
+```sh
+npm install
+npm run dev
+```
+
+- Create the .env file
 
 ```sh
 cd <project-name>
-cp .env.dev .env
+cp .env.development
 ```
 
-- Install dependencies and run the project:
+- Running the app
 
-```sh
-yarn install
-yarn run dev
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```
+
+## Test
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+# test coverage
+$ npm run test:cov
 ```
 
 ### Project structure
@@ -32,13 +55,16 @@ yarn run dev
 ```
 Project Root/
 │
-├── dist
+├── dist/
 ├── node_modules/
 ├── src/
 │   └── api/ # DESCRIPTION
-│   └── shared/ # DESCRIPTION
+│   └── shared/
+│       └── config/ # DESCRIPTION
+│       └── datasource/
+│       └── modules/
+│           └── dataloader/ # DESCRIPTION
 ├── test
-├── .env.development
 ├── .env.example # example of how the env file have to look like
 ├── .env.test
 ├── .gitignore
@@ -52,12 +78,4 @@ Project Root/
 └── tslint.json
 ```
 
-### Unit Tests
-
-- To run the unit tests execute the following script:
-
-```sh
-$/ yarn test-watch
-```
-
-- The test-watch script runs jest --coverage, which generates a html coverage report. To view this report go to the coverage folder, then open the Icov-report folder, and finally open the index.html file.
+- Author - [Anthony Soto](anthony.soto.cordoba@gmail.com)
