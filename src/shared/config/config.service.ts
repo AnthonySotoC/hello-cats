@@ -76,14 +76,10 @@ export class ConfigService {
       DB_NAME: Joi.string().required(),
     });
 
-    const { error, value: validatedEnvConfig } = envVarsSchema.validate(
-      envConfig,
-    );
+    const { error, value: validatedEnvConfig } = envVarsSchema.validate(envConfig);
 
     if (error) {
-      throw new InternalServerErrorException(
-        `Config validation error: ${error.message}`,
-      );
+      throw new InternalServerErrorException(`Config validation error: ${error.message}`);
     }
 
     return validatedEnvConfig;

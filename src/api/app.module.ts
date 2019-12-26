@@ -8,13 +8,6 @@ import { TypeormModule } from '../shared/config/modules/typeorm/typeorm.module';
 import { DataloaderModule } from '../shared/modules/dataloader/dataloader.module';
 
 @Module({
-  imports: [
-    CatModule,
-    HumanModule,
-    ConfigModule,
-    GraphqlModule,
-    TypeormModule,
-    DataloaderModule,
-  ],
+  imports: [CatModule, HumanModule, ConfigModule, GraphqlModule, TypeormModule, DataloaderModule],
 })
 export class AppModule {}
