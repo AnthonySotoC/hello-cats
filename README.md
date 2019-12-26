@@ -13,9 +13,9 @@
 
 - Installation
 
-```sh
-npm install
-npm run dev
+```bash
+$ npm install
+$ npm run dev
 ```
 
 - Create the .env file
@@ -46,6 +46,7 @@ $ npm run test
 
 # e2e tests
 $ npm run test:e2e
+
 # test coverage
 $ npm run test:cov
 ```
@@ -78,4 +79,4 @@ Project Root/
 └── tslint.json
 ```
 
-- Author - [Anthony Soto](anthony.soto.cordoba@gmail.com)
+- Author - Anthony Soto Córdoba
