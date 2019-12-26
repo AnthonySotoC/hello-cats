@@ -1,13 +1,14 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { TestingModule } from '@nestjs/testing';
+
+import CatModule from './cat.module.mock';
+
 import { CatResolver } from '../cat.resolver';
 
 describe('CatResolver', () => {
   let resolver: CatResolver;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [CatResolver],
-    }).compile();
+    const module: TestingModule = await CatModule.compile();
 
     resolver = module.get<CatResolver>(CatResolver);
   });

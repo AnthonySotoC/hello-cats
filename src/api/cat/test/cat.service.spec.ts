@@ -1,13 +1,13 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { TestingModule } from '@nestjs/testing';
+
+import CatModule from './cat.module.mock';
 import { CatService } from '../cat.service';
 
 describe('CatService', () => {
   let service: CatService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [CatService],
-    }).compile();
+    const module: TestingModule = await CatModule.compile();
 
     service = module.get<CatService>(CatService);
   });
