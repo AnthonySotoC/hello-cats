@@ -21,7 +21,8 @@ $ npm install
 
 ```sh
 cd <project-name>
-cp .env.development .env.test
+cp .env.example .env.development
+cp .env.example .env.test
 ```
 
 - Running the app
