@@ -3,13 +3,13 @@
 
 # NEST GRAPHQL API
 
-### Tech
+## Tech
 
 - [NestJS](https://docs.nestjs.com/)
 - [GraphQL](https://graphql.org/)
 - [Typescript](https://www.typescriptlang.org/docs/home.html)
 
-### Getting started
+## Getting started
 
 - Installation
 
@@ -63,7 +63,7 @@ Project Root/
 │       └── config/ # DESCRIPTION
 │       └── datasource/
 │       └── modules/
-│           └── dataloader/ # DESCRIPTION
+│           └── dataloader/ # Resolve the N+1 problem with graphql
 ├── test
 ├── .env.example # example of how the env file have to look like
 ├── .env.test
