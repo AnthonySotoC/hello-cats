@@ -17,11 +17,11 @@
 $ npm install
 ```
 
-- Create the .env file
+- Create the .env files
 
 ```sh
 cd <project-name>
-cp .env.development
+cp .env.development .env.test
 ```
 
 - Running the app
