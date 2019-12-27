@@ -50,7 +50,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-### Project structure
+## Project structure
 
 ```
 Project Root/
