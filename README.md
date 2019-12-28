@@ -53,7 +53,7 @@ $ npm run test:cov
 
 ## Project structure
 
-```
+```bash
 Project Root/
 │
 ├── .vscode/
