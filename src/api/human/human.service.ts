@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Human } from './model/human';
 import { HumanArgs } from './dto/human.args';
 import { CreateHumanInput } from './dto/create-human.input';
-import { Human as HumanEntity } from '../../shared/datasource/models/human.entity';
+import { Human as HumanEntity } from '@datasource/models/human.entity';
 
 @Injectable()
 export class HumanService {

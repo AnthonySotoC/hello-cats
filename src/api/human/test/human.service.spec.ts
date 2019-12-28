@@ -1,7 +1,7 @@
 import { TestingModule } from '@nestjs/testing';
 
 import HumanModule from './human.module.mock';
-import { HumanService } from '../human.service';
+import { HumanService } from '@api/human/human.service';
 
 describe('HumanService', () => {
   let service: HumanService;

@@ -11,6 +11,9 @@
     "baseUrl": "./",
     "incremental": true,
     "paths": {
+      "@api/*": ["./src/api/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@config/*": ["./src/shared/config/*"],
       "@datasource/*": ["./src/shared/datasource/*"]
     }
   },

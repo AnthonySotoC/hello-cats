@@ -1,7 +1,7 @@
 import { TestingModule } from '@nestjs/testing';
 
 import CatModule from './cat.module.mock';
-import { CatService } from '../cat.service';
+import { CatService } from '@api/cat/cat.service';
 
 describe('CatService', () => {
   let service: CatService;

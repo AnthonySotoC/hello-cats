@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 
-import { ConfigService } from './../config.service';
+import { ConfigService } from '@config/config.service';
 
 export default Test.createTestingModule({
   providers: [

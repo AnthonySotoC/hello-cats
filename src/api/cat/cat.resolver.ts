@@ -6,10 +6,10 @@ import { CatArgs } from './dto/cat.args';
 import { CatService } from './cat.service';
 import { CreateCatInput } from './dto/create-cat.input';
 
-import { Human } from '../../api/human/model/human';
+import { Human } from '@api/human/model/human';
 
-import { Dataloader } from '../../shared/modules/dataloader/dataloader.decorator';
-import { IDataloader } from '../../shared/modules/dataloader/models/dataloader.interface';
+import { Dataloader } from '@shared/modules/dataloader/dataloader.decorator';
+import { IDataloader } from '@shared/modules/dataloader/models/dataloader.interface';
 
 @Resolver(of => Cat)
 export class CatResolver {

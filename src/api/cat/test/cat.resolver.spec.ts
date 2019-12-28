@@ -2,7 +2,7 @@ import { TestingModule } from '@nestjs/testing';
 
 import CatModule from './cat.module.mock';
 
-import { CatResolver } from '../cat.resolver';
+import { CatResolver } from '@api/cat/cat.resolver';
 
 describe('CatResolver', () => {
   let resolver: CatResolver;

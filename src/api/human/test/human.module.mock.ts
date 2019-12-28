@@ -1,9 +1,9 @@
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Test } from '@nestjs/testing';
 
-import { Human } from './../../../shared/datasource/models/human.entity';
-import { HumanResolver } from './../human.resolver';
-import { HumanService } from '../human.service';
+import { Human } from '@datasource/models/human.entity';
+import { HumanResolver } from '@api/human/human.resolver';
+import { HumanService } from '@api/human/human.service';
 
 export default Test.createTestingModule({
   providers: [

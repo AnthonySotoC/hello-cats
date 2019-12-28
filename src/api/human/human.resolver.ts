@@ -1,11 +1,4 @@
-import {
-  Resolver,
-  Query,
-  Args,
-  Mutation,
-  ResolveProperty,
-  Parent,
-} from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation, ResolveProperty, Parent } from '@nestjs/graphql';
 import { NotFoundException } from '@nestjs/common';
 
 import { Human } from './model/human';
@@ -15,8 +8,8 @@ import { CreateHumanInput } from './dto/create-human.input';
 
 import { Cat } from '../cat/model/cat';
 
-import { IDataloader } from './../../shared/modules/dataloader/models/dataloader.interface';
-import { Dataloader } from './../../shared/modules/dataloader/dataloader.decorator';
+import { IDataloader } from '@shared/modules/dataloader/models/dataloader.interface';
+import { Dataloader } from '@shared/modules/dataloader/dataloader.decorator';
 
 @Resolver(of => Human)
 export class HumanResolver {
@@ -46,10 +39,7 @@ export class HumanResolver {
   }
 
   @ResolveProperty(() => Cat)
-  async cats(
-    @Parent() human: Human,
-    @Dataloader() { catDataloader }: IDataloader,
-  ): Promise<Cat[]> {
+  async cats(@Parent() human: Human, @Dataloader() { catDataloader }: IDataloader): Promise<Cat[]> {
     const cats = await catDataloader.load(human.id || -1);
     return cats;
   }

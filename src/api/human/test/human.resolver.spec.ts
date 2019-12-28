@@ -1,7 +1,7 @@
 import { TestingModule } from '@nestjs/testing';
 
 import HumanModule from './human.module.mock';
-import { HumanResolver } from '../human.resolver';
+import { HumanResolver } from '@api/human/human.resolver';
 
 describe('HumanResolver', () => {
   let resolver: HumanResolver;
