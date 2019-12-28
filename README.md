@@ -60,14 +60,21 @@ Project Root/
 ├── dist/
 ├── node_modules/
 ├── src/
-│   └── api/ # DESCRIPTION
+│   └── api/ # Graphql entities
+│       └── example/
+│           └── dto/ # DESCRIPTION
+│           └── model/ # Graphql entity
+│           └── test/ # Unit testing. Tracking of the .spec and .mock files
+│           └── example.module.ts # Provide metadata that Nest makes use to organize the app
+│           └── example.resolver.ts # Mutations and queries resolvers
+│           └── example.service.ts # Manage the business logic
 │   └── shared/
 │       └── config/ # Manage the .env file and features configurations
 │       └── datasource/
 │       └── modules/
 │           └── dataloader/ # Resolve the N+1 problem with graphql
 ├── test/
-├── .env.example # example of how the env file have to look like
+├── .env.example # Example of how the env file have to look like
 ├── .gitignore
 ├── .prettierrc
 ├── .jest.config.js
