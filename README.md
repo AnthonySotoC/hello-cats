@@ -22,7 +22,6 @@ $ npm install
 ```sh
 cd <project-name>
 cp .env.example .env.development
-cp .env.example .env.test
 ```
 
 - Running the app
@@ -60,7 +59,7 @@ Project Root/
 ├── dist/
 ├── node_modules/
 ├── src/
-│   └── api/ # Graphql entities
+│   └── api/
 │       └── example/
 │           └── dto/ # DESCRIPTION
 │           └── model/ # Graphql entity
