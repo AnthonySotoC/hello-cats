@@ -61,7 +61,7 @@ Project Root/
 ├── src/
 │   └── api/
 │       └── example/
-│           └── dto/ # DESCRIPTION
+│           └── dto/ # Graphql args types
 │           └── model/ # Graphql entity
 │           └── test/ # Unit testing. Tracking of the .spec and .mock files
 │           └── example.module.ts # Provide metadata that Nest makes use to organize the app
