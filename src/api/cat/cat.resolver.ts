@@ -1,5 +1,5 @@
 import { Resolver, Query, Args, Mutation, ResolveProperty, Parent } from '@nestjs/graphql';
-import { NotFoundException } from '@nestjs/common';
+import { NotFoundException, UseGuards } from '@nestjs/common';
 
 import { Cat } from './model/cat';
 import { CatArgs } from './dto/cat.args';
@@ -10,6 +10,8 @@ import { Human } from '@api/human/model/human';
 
 import { Dataloader } from '@shared/modules/dataloader/dataloader.decorator';
 import { IDataloader } from '@shared/modules/dataloader/models/dataloader.interface';
+import { RolesGuard } from '@shared/modules/auth/roles.guard';
+import { Roles } from '@shared/modules/auth/roles.decorator';
 
 @Resolver(of => Cat)
 export class CatResolver {
@@ -29,6 +31,8 @@ export class CatResolver {
     return cat;
   }
 
+  @UseGuards(RolesGuard)
+  @Roles('admin')
   @Mutation(of => Cat)
   public createCat(@Args('data') data: CreateCatInput): Promise<Cat> {
     return this.catService.create(data);
