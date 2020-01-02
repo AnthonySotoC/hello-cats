@@ -9,9 +9,9 @@ import { CreateCatInput } from './dto/create-cat.input';
 import { Human } from '@api/human/model/human';
 
 import { Dataloader } from '@shared/modules/dataloader/dataloader.decorator';
-import { IDataloader } from '@shared/modules/dataloader/models/dataloader.interface';
-import { RolesGuard } from '@shared/modules/auth/roles.guard';
-import { Roles } from '@shared/modules/auth/roles.decorator';
+import { IDataloader } from '@shared/modules/dataloader/model/dataloader.interface';
+import { RolesGuard } from '@shared/auth/guards/roles.guard';
+import { Roles } from '@shared/auth/decorators/roles.decorator';
 
 @Resolver(of => Cat)
 export class CatResolver {

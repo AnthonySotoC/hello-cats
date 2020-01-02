@@ -1,13 +1,13 @@
 import * as Dataloader from 'dataloader';
 import { Injectable } from '@nestjs/common';
 
-import { IDataloaderArgs } from './models/dataloader-args.interface';
-import { IDataloader } from './models/dataloader.interface';
+import { IDataloaderArgs } from './model/dataloader-args.interface';
+import { IDataloader } from './model/dataloader.interface';
 
-import { Cat } from '@datasource/models/cat.entity';
+import { Cat } from '@shared/datasource/model/cat.entity';
 import { CatService } from '@api/cat/cat.service';
 
-import { Human } from '@datasource/models/human.entity';
+import { Human } from '@shared/datasource/model/human.entity';
 import { HumanService } from '@api/human/human.service';
 
 @Injectable()

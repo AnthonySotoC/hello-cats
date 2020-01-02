@@ -8,7 +8,7 @@ import { CreateHumanInput } from './dto/create-human.input';
 
 import { Cat } from '../cat/model/cat';
 
-import { IDataloader } from '@shared/modules/dataloader/models/dataloader.interface';
+import { IDataloader } from '@shared/modules/dataloader/model/dataloader.interface';
 import { Dataloader } from '@shared/modules/dataloader/dataloader.decorator';
 
 @Resolver(of => Human)

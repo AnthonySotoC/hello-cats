@@ -1,7 +1,7 @@
 import * as Dataloader from 'dataloader';
 
-import { Cat } from './../../../datasource/models/cat.entity';
-import { Human } from '../../../datasource/models/human.entity';
+import { Cat } from '../../../datasource/model/cat.entity';
+import { Human } from '../../../datasource/model/human.entity';
 
 export interface IDataloader {
   catDataloader: Dataloader<number, Cat[]>;

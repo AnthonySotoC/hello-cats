@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Cat } from './model/cat';
 import { CatArgs } from './dto/cat.args';
 import { CreateCatInput } from './dto/create-cat.input';
-import { Cat as CatEntity } from '@datasource/models/cat.entity';
+import { Cat as CatEntity } from '@shared/datasource/model/cat.entity';
 
 @Injectable()
 export class CatService {

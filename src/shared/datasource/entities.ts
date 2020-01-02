@@ -1,4 +1,4 @@
-import { Cat } from './models/cat.entity';
-import { Human } from './models/human.entity';
+import { Cat } from './model/cat.entity';
+import { Human } from './model/human.entity';
 
 export default [Cat, Human];

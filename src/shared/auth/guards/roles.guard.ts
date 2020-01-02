@@ -2,7 +2,7 @@ import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
 
-import { IUser } from './model/user.interface';
+import { IUser } from '../model/user.interface';
 import { ConfigService } from '@shared/config/config.service';
 
 @Injectable()

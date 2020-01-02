@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { Cat } from '@datasource/models/cat.entity';
+import { Cat } from '@shared/datasource/model/cat.entity';
 import { CatResolver } from './cat.resolver';
 import { CatService } from './cat.service';
 
