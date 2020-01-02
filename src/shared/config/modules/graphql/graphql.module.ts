@@ -8,7 +8,10 @@ import { ConfigService } from '@config/config.service';
   imports: [
     GraphQLModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => configService.graphql,
+      useFactory: (configService: ConfigService) => ({
+        ...configService.graphql,
+        context: ({ req, res }) => ({ req, res }),
+      }),
       inject: [ConfigService],
     }),
   ],

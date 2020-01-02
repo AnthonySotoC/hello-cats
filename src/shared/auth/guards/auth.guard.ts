@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { AuthService } from '../auth.service';
 import { ConfigService } from '@shared/config/config.service';
+import { ICustomContext } from '@shared/config/modules/graphql/model/context.interface';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -12,9 +13,15 @@ export class AuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     if (this.configService.isApiAuthEnabled) {
       const graphqlExecutionContext: GraphQLExecutionContext = GqlExecutionContext.create(context);
-      const ctx: any = graphqlExecutionContext.getContext();
+      const ctx = graphqlExecutionContext.getContext<ICustomContext>();
+      const authorization = ctx.req.headers.authorization;
 
-      ctx.user = this.authService.validateToken('');
+      if (!authorization || !authorization.startsWith('Bearer ')) {
+        return false;
+      }
+
+      const token = authorization.split('Bearer ')[1];
+      ctx.user = this.authService.validateToken(token);
     }
     return true;
   }

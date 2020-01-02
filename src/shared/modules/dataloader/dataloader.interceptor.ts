@@ -3,6 +3,7 @@ import { GqlExecutionContext, GraphQLExecutionContext } from '@nestjs/graphql';
 import { Observable } from 'rxjs';
 
 import { DataloaderService } from './dataloader.service';
+import { ICustomContext } from '@shared/config/modules/graphql/model/context.interface';
 
 export const DATALOADER_CONTEXT_KEY: string = 'DATALOADER_CONTEXT_KEY';
 
@@ -12,7 +13,7 @@ export class DataloaderInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const graphqlExecutionContext: GraphQLExecutionContext = GqlExecutionContext.create(context);
 
-    const ctx: any = graphqlExecutionContext.getContext();
+    const ctx = graphqlExecutionContext.getContext<ICustomContext>();
 
     if (ctx[DATALOADER_CONTEXT_KEY] === undefined) {
       ctx[DATALOADER_CONTEXT_KEY] = () => {

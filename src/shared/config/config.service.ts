@@ -8,7 +8,7 @@ import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOpti
 
 import entities from '@datasource/entities';
 
-interface EnvConfig {
+interface IEnvConfig {
   NODE_ENV: string;
   PORT: string;
   API_AUTH_ENABLED: string;
@@ -20,16 +20,16 @@ interface EnvConfig {
 }
 
 export class ConfigService {
-  private readonly envConfig: EnvConfig;
+  private readonly envConfig: IEnvConfig;
 
   constructor(filePath: string) {
-    const config: EnvConfig = dotenv.parse(fs.readFileSync(filePath)) as any;
+    const config: IEnvConfig = dotenv.parse(fs.readFileSync(filePath)) as any;
     this.envConfig = this.validateInput(config);
 
     this.get = this.get.bind(this);
   }
 
-  public get(key: keyof EnvConfig): string {
+  public get(key: keyof IEnvConfig): string {
     return this.envConfig[`${key}`];
   }
 
@@ -62,7 +62,7 @@ export class ConfigService {
     };
   }
 
-  private validateInput(envConfig: EnvConfig): EnvConfig {
+  private validateInput(envConfig: IEnvConfig): IEnvConfig {
     const envVarsSchema: Joi.ObjectSchema = Joi.object({
       NODE_ENV: Joi.string()
         .valid('development', 'production')
