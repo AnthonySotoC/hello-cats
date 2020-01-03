@@ -68,8 +68,10 @@ Project Root/
 │           └── example.resolver.ts # Mutations and queries resolvers
 │           └── example.service.ts # Manage the business logic
 │   └── shared/
+│       └── auth/ # JWT decode and roles validation
 │       └── config/ # Manage the .env file and features configurations
 │       └── datasource/
+│           └── database/ # Database entities
 │       └── modules/
 │           └── dataloader/ # Resolve the N+1 problem with graphql
 ├── test/

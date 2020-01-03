@@ -6,7 +6,7 @@ import { GqlModuleOptions } from '@nestjs/graphql';
 import { InternalServerErrorException } from '@nestjs/common';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 
-import entities from '@datasource/entities';
+import entities from '@shared/datasource/database/entities';
 
 interface IEnvConfig {
   NODE_ENV: string;
