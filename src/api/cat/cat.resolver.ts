@@ -44,8 +44,8 @@ export class CatResolver {
   }
 
   @ResolveProperty(() => Human)
-  async human(@Parent() cat: Cat, @Dataloader() { humanDataloader }: IDataloader): Promise<Human> {
-    const owners = await humanDataloader.load(cat.humanId || -1);
+  async human(@Parent() cat: Cat, @Dataloader() { catHumanDataloader }: IDataloader): Promise<Human> {
+    const owners = await catHumanDataloader.load(cat.humanId || -1);
     return owners.shift();
   }
 }

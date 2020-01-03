@@ -23,11 +23,11 @@ export class DataloaderService {
   }
 
   public getDataloader = (): IDataloader => ({
-    catDataloader: this.createDataloader<Cat>({
+    humanCatsDataloader: this.createDataloader<Cat>({
       findAll: this.catService.batch,
       filterBy: 'humanId',
     }),
-    humanDataloader: this.createDataloader<Human>({
+    catHumanDataloader: this.createDataloader<Human>({
       findAll: this.humanService.batch,
       filterBy: 'id',
     }),

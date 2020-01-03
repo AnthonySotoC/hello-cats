@@ -16,12 +16,10 @@ export class AuthGuard implements CanActivate {
       const ctx = graphqlExecutionContext.getContext<ICustomContext>();
       const authorization = ctx.req.headers.authorization;
 
-      if (!authorization || !authorization.startsWith('Bearer ')) {
-        return false;
+      if (authorization && authorization.startsWith('Bearer ')) {
+        const token = authorization.split('Bearer ')[1];
+        ctx.user = this.authService.validateToken(token);
       }
-
-      const token = authorization.split('Bearer ')[1];
-      ctx.user = this.authService.validateToken(token);
     }
     return true;
   }

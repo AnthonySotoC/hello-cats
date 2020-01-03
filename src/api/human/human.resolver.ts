@@ -39,8 +39,8 @@ export class HumanResolver {
   }
 
   @ResolveProperty(() => Cat)
-  async cats(@Parent() human: Human, @Dataloader() { catDataloader }: IDataloader): Promise<Cat[]> {
-    const cats = await catDataloader.load(human.id || -1);
+  async cats(@Parent() human: Human, @Dataloader() { humanCatsDataloader }: IDataloader): Promise<Cat[]> {
+    const cats = await humanCatsDataloader.load(human.id || -1);
     return cats;
   }
 }
