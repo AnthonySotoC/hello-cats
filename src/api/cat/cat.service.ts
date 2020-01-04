@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -6,16 +6,19 @@ import { Cat } from './model/cat';
 import { CatArgs } from './dto/cat.args';
 import { CreateCatInput } from './dto/create-cat.input';
 import { Cat as CatEntity } from '@shared/datasource/database/model/cat.entity';
+import { CatHuman as CatHumanEntity } from '@shared/datasource/database/model/cat-human.entity';
 
 @Injectable()
 export class CatService {
   constructor(
     @InjectRepository(CatEntity)
     private readonly catRepository: Repository<CatEntity>,
+    @InjectRepository(CatHumanEntity)
+    private readonly catHumanRepository: Repository<CatHumanEntity>,
   ) {}
 
-  public batch = async (keys: number[]) => {
-    return this.catRepository.findByIds(keys);
+  public batch = async (humanKeys: number[]) => {
+    return this.catHumanRepository.find({ where: { humanId: In(humanKeys) }, relations: ['cat'] });
   };
 
   public findAll = async (catArgs: CatArgs): Promise<Cat[]> => {

@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { Cat } from '@shared/datasource/database/model/cat.entity';
 import { CatResolver } from './cat.resolver';
 import { CatService } from './cat.service';
+import { Cat } from '@shared/datasource/database/model/cat.entity';
+import { CatHuman } from '@datasource/database/model/cat-human.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Cat])],
+  imports: [TypeOrmModule.forFeature([Cat, CatHuman])],
   providers: [CatResolver, CatService],
   exports: [CatService],
 })

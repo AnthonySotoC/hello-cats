@@ -5,9 +5,8 @@
 
 type Cat {
   id: ID!
-  humanId: Float!
   name: String!
-  human: Human
+  owners: [Human!]
 }
 
 input CreateCatInput {

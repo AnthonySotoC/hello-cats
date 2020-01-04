@@ -9,12 +9,13 @@ import { CatService } from '@api/cat/cat.service';
 
 import { Human } from '@shared/datasource/database/model/human.entity';
 import { HumanService } from '@api/human/human.service';
+import { CatHuman } from '@shared/datasource/database/model/cat-human.entity';
 
 @Injectable()
 export class DataloaderService {
   constructor(private readonly catService: CatService, readonly humanService: HumanService) {}
 
-  public createDataloader<T>({ findAll, filterBy }: IDataloaderArgs<T>): Dataloader<number, any[]> {
+  public createOneToManyDataloader<T>({ findAll, filterBy }: IDataloaderArgs<T>): Dataloader<number, T[]> {
     return new Dataloader(async (keys: number[]) => {
       const response = await findAll(keys);
 
@@ -22,14 +23,30 @@ export class DataloaderService {
     });
   }
 
+  public createManyToManyDataloader<T, K>({
+    findAll,
+    filterBy,
+    resolvedProperty,
+  }: IDataloaderArgs<T>): Dataloader<number, K[]> {
+    return new Dataloader(async (keys: number[]) => {
+      const response = await findAll(keys);
+
+      return keys.map((value: number) =>
+        response.filter((row: any) => row[filterBy] === value).map((row: any) => row[resolvedProperty]),
+      );
+    });
+  }
+
   public getDataloader = (): IDataloader => ({
-    humanCatsDataloader: this.createDataloader<Cat>({
+    humanCatsDataloader: this.createManyToManyDataloader<CatHuman, Cat>({
       findAll: this.catService.batch,
       filterBy: 'humanId',
+      resolvedProperty: 'cat',
     }),
-    catHumanDataloader: this.createDataloader<Human>({
+    catHumanDataloader: this.createManyToManyDataloader<CatHuman, Human>({
       findAll: this.humanService.batch,
-      filterBy: 'id',
+      filterBy: 'catId',
+      resolvedProperty: 'human',
     }),
   });
 }
