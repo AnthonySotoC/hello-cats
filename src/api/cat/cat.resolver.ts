@@ -12,6 +12,7 @@ import { Dataloader } from '@shared/modules/dataloader/dataloader.decorator';
 import { IDataloader } from '@shared/modules/dataloader/model/dataloader.interface';
 import { RolesGuard } from '@shared/auth/guards/roles.guard';
 import { Roles } from '@shared/auth/decorators/roles.decorator';
+import { Breed } from '@api/breed/model/breed';
 
 @Resolver(of => Cat)
 export class CatResolver {
@@ -47,5 +48,11 @@ export class CatResolver {
   async owners(@Parent() cat: Cat, @Dataloader() { catHumanDataloader }: IDataloader): Promise<Human[]> {
     const owners = await catHumanDataloader.load(cat.id || -1);
     return owners;
+  }
+
+  @ResolveProperty(() => Breed)
+  async breed(@Parent() cat: Cat, @Dataloader() { catBreedDataloader }: IDataloader): Promise<Breed> {
+    const breeds = await catBreedDataloader.load(cat.breedId || -1);
+    return breeds.shift();
   }
 }

@@ -1,3 +1,4 @@
+import { BreedService } from './../../../api/breed/breed.service';
 import * as Dataloader from 'dataloader';
 import { Injectable } from '@nestjs/common';
 
@@ -11,9 +12,15 @@ import { Human } from '@shared/datasource/database/model/human.entity';
 import { HumanService } from '@api/human/human.service';
 import { CatHuman } from '@shared/datasource/database/model/cat-human.entity';
 
+import { Breed } from '@api/breed/model/breed';
+
 @Injectable()
 export class DataloaderService {
-  constructor(private readonly catService: CatService, readonly humanService: HumanService) {}
+  constructor(
+    private readonly catService: CatService,
+    private readonly humanService: HumanService,
+    private readonly breedService: BreedService,
+  ) {}
 
   public createOneToManyDataloader<T>({ findAll, filterBy }: IDataloaderArgs<T>): Dataloader<number, T[]> {
     return new Dataloader(async (keys: number[]) => {
@@ -47,6 +54,10 @@ export class DataloaderService {
       findAll: this.humanService.batch,
       filterBy: 'catId',
       resolvedProperty: 'human',
+    }),
+    catBreedDataloader: this.createOneToManyDataloader<Breed>({
+      findAll: this.breedService.batch,
+      filterBy: 'id',
     }),
   });
 }

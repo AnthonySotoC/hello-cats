@@ -6,9 +6,10 @@ import { DataloaderInterceptor } from './dataloader.interceptor';
 
 import { CatModule } from '@api/cat/cat.module';
 import { HumanModule } from '@api/human/human.module';
+import { BreedModule } from '@api/breed/breed.module';
 
 @Module({
-  imports: [CatModule, HumanModule],
+  imports: [CatModule, HumanModule, BreedModule],
   providers: [
     DataloaderService,
     {

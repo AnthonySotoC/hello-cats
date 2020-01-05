@@ -3,9 +3,16 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Breed {
+  id: ID!
+  name: String!
+}
+
 type Cat {
   id: ID!
   name: String!
+  breedId: Float!
+  breed: Breed
   owners: [Human!]
 }
 
