@@ -2,10 +2,11 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Reflector } from '@nestjs/core';
 import { Test } from '@nestjs/testing';
 
-import { Cat } from '@shared/datasource/database/model/cat.entity';
 import { CatService } from '@api/cat/cat.service';
 import { CatResolver } from '@api/cat/cat.resolver';
 import { ConfigService } from '@shared/config/config.service';
+import { Cat } from '@shared/datasource/database/model/cat.entity';
+import { CatHuman } from '@shared/datasource/database/model/cat-human.entity';
 
 export default Test.createTestingModule({
   imports: [Reflector],
@@ -14,6 +15,10 @@ export default Test.createTestingModule({
     CatService,
     {
       provide: getRepositoryToken(Cat),
+      useValue: {},
+    },
+    {
+      provide: getRepositoryToken(CatHuman),
       useValue: {},
     },
     {
