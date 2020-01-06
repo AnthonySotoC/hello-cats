@@ -5,14 +5,13 @@ import { Injectable } from '@nestjs/common';
 import { IDataloaderArgs } from './model/dataloader-args.interface';
 import { IDataloader } from './model/dataloader.interface';
 
-import { Cat } from '@shared/datasource/database/model/cat.entity';
 import { CatService } from '@api/cat/cat.service';
-
-import { Human } from '@shared/datasource/database/model/human.entity';
 import { HumanService } from '@api/human/human.service';
-import { CatHuman } from '@shared/datasource/database/model/cat-human.entity';
 
-import { Breed } from '@api/breed/model/breed';
+import { Cat } from '@shared/datasource/database/model/cat.entity';
+import { Human } from '@shared/datasource/database/model/human.entity';
+import { Breed } from '@shared/datasource/database/model/breed.entity';
+import { CatHuman } from '@shared/datasource/database/model/cat-human.entity';
 
 @Injectable()
 export class DataloaderService {
