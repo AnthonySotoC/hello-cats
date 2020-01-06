@@ -6,6 +6,7 @@
 type Breed {
   id: ID!
   name: String!
+  cats: [Cat!]
 }
 
 type Cat {
@@ -14,6 +15,10 @@ type Cat {
   breedId: Float!
   breed: Breed
   owners: [Human!]
+}
+
+input CreateBreedInput {
+  name: String!
 }
 
 input CreateCatInput {
@@ -37,6 +42,8 @@ type Mutation {
   deleteCat(id: Float!): Boolean!
   createHuman(data: CreateHumanInput!): Human!
   deleteHuman(id: Float!): Boolean!
+  createBreed(data: CreateBreedInput!): Breed!
+  deleteBreed(id: Float!): Boolean!
 }
 
 type Query {
@@ -44,4 +51,6 @@ type Query {
   cat(id: Float!): Cat!
   humans(skip: Int = 0, take: Int = 25): [Human!]!
   human(id: Float!): Human!
+  breeds(skip: Int = 0, take: Int = 25): [Breed!]!
+  breed(id: Float!): Breed!
 }

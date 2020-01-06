@@ -45,7 +45,7 @@ export class DataloaderService {
 
   public getDataloader = (): IDataloader => ({
     humanCatsDataloader: this.createManyToManyDataloader<CatHuman, Cat>({
-      findAll: this.catService.batch,
+      findAll: this.catService.batchByHumans,
       filterBy: 'humanId',
       resolvedProperty: 'cat',
     }),
@@ -57,6 +57,10 @@ export class DataloaderService {
     catBreedDataloader: this.createOneToManyDataloader<Breed>({
       findAll: this.breedService.batch,
       filterBy: 'id',
+    }),
+    breedCatDataloader: this.createOneToManyDataloader<Cat>({
+      findAll: this.catService.batchByBreeds,
+      filterBy: 'breedId',
     }),
   });
 }

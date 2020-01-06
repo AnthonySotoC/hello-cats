@@ -17,8 +17,12 @@ export class CatService {
     private readonly catHumanRepository: Repository<CatHumanEntity>,
   ) {}
 
-  public batch = async (humanKeys: number[]) => {
+  public batchByHumans = async (humanKeys: number[]) => {
     return this.catHumanRepository.find({ where: { humanId: In(humanKeys) }, relations: ['cat'] });
+  };
+
+  public batchByBreeds = async (breedKeys: number[]) => {
+    return this.catRepository.find({ where: { breedId: In(breedKeys) } });
   };
 
   public findAll = async (catArgs: CatArgs): Promise<Cat[]> => {

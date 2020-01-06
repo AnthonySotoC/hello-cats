@@ -32,8 +32,8 @@ export class CatResolver {
     return cat;
   }
 
-  @UseGuards(RolesGuard)
   @Roles('admin')
+  @UseGuards(RolesGuard)
   @Mutation(of => Cat)
   public createCat(@Args('data') data: CreateCatInput): Promise<Cat> {
     return this.catService.create(data);
@@ -46,13 +46,11 @@ export class CatResolver {
 
   @ResolveProperty(() => Human)
   async owners(@Parent() cat: Cat, @Dataloader() { catHumanDataloader }: IDataloader): Promise<Human[]> {
-    const owners = await catHumanDataloader.load(cat.id || -1);
-    return owners;
+    return catHumanDataloader.load(cat.id || -1);
   }
 
   @ResolveProperty(() => Breed)
   async breed(@Parent() cat: Cat, @Dataloader() { catBreedDataloader }: IDataloader): Promise<Breed> {
-    const breeds = await catBreedDataloader.load(cat.breedId || -1);
-    return breeds.shift();
+    return (await catBreedDataloader.load(cat.breedId || -1)).shift();
   }
 }

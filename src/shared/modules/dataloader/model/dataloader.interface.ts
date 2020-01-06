@@ -8,4 +8,5 @@ export interface IDataloader {
   humanCatsDataloader: Dataloader<number, Cat[]>;
   catHumanDataloader: Dataloader<number, Human[]>;
   catBreedDataloader: Dataloader<number, Breed[]>;
+  breedCatDataloader: Dataloader<number, Cat[]>;
 }
